@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<launch>
+  <!-- start camera -->
+  <include file="$(find voxel)/launch/voxel.launch" />
+
+  <!-- start calibration -->
+  <node pkg="camera_calibration" type="cameracalibrator.py" name="cameracalibrator" args=" --size 8x6 --square 0.025 --approximate=0.3 left:=/stereo/left/image_raw right:=/stereo/right/image_raw left_camera:=/stereo/left right_camera:=/stereo/right">
+  </node>
+</launch>

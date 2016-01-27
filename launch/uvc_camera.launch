@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+
+<launch>
+  <arg name="width" default="1280" />
+  <arg name="height" default="720" />
+  <arg name="fps" default="60" />
+
+  <!-- start the left camera -->
+  <node pkg="uvc_camera" type="uvc_camera_node" name="left" ns="stereo/left">
+
+    <!-- Parameters used to find the camera -->
+    <param name="device" value="/dev/video0"/>
+    <param name="frame_id" value="left"/>
+
+    <!-- Image size and type -->
+    <param name="width" value="$(arg width)"/>
+    <param name="height" value="$(arg height)"/>
+    <param name="fps" value="$(arg fps)"/>
+  </node>
+
+  <!-- start the right camera -->
+</launch>
