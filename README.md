@@ -17,6 +17,8 @@ libuvc_camera
 ```bash
 clone libuvc
 clone libuvc_ros
+
+# missing a bunch here
 ```
 
 uvc_camera:
@@ -44,8 +46,14 @@ this package:
 
 ```bash
 git clone https://github.com/bluerobotics/voxel.git ~/catkin_ws/src/voxel
+
 # rosdep install voxel
 # password and y's
+
+sudo cp ~/catkin_ws/src/voxel/extra/99-voxel-camera.rules /etc/udev/rules.d/
+# to immediately reload the rules without restarting
+sudo udevadm control --reload-rules && sudo service udev restart && sudo udevadm trigger
+
 cd ~/catkin_ws
 catkin_make
 ```
@@ -76,11 +84,15 @@ To start the cameras:
 roslaunch voxel voxel.launch
 ```
 
-You now have available topics such as `stereo/left/image_rect_color`, `stereo/left/image_rect_color`, and `/stereo/points`. To quickly view a camera image and the resulting point cloud, try out the included rviz configuration:
+You now have available topics such as `stereo/left/image_rect_color`, `stereo/left/image_rect_color`, and `/stereo/points`. You'll likely also want to include the voxel macro in your urdf file. Look at the [voxel_standalone.urdf.xacro](description/voxel_standalone.urdf.xacro) file for an example of how to do that.
+
+To quickly view a camera image and the resulting point cloud, try out the included rviz configuration:
 
 ```bash
 roslaunch voxel rviz.launch
 ```
+
+![Rviz Screenshot](extra/rviz-screenshot.jpg)
 
 ## Change History
 

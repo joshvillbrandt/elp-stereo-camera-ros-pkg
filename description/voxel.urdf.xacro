@@ -1,0 +1,133 @@
+<?xml version="1.0"?>
+
+<robot name="voxel" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:property name="M_PI" value="3.1415926535897931" />
+  <xacro:property name="INTEROCULAR" value="0.065" />
+
+  <xacro:macro name="voxel" params="name">
+    <link name="${name}">
+      <visual>
+        <geometry>
+          <cylinder length="0.150" radius="0.029"/>
+        </geometry>
+        <origin rpy="${M_PI/2} 0 0"/>
+        <material name="polycarb">
+          <color rgba="1 1 1 0.3"/>
+        </material>
+      </visual>
+    </link>
+
+    <link name="${name}_camera">
+      <visual>
+        <geometry>
+          <box size="0.003 0.080 .020"/>
+        </geometry>
+        <material name="gray">
+          <color rgba="0.7 0.7 0.7 1"/>
+        </material>
+      </visual>
+    </link>
+
+    <link name="${name}_left_frame">
+      <visual>
+        <geometry>
+          <cylinder length="0.020" radius="0.008"/>
+        </geometry>
+        <origin xyz="0.012 0 0" rpy="0 ${M_PI/2} 0"/>
+        <material name="black">
+          <color rgba="0 0 0 1"/>
+        </material>
+      </visual>
+    </link>
+
+    <link name="${name}_left_optical_frame">
+    </link>
+
+    <link name="${name}_right_frame">
+      <visual>
+        <geometry>
+          <cylinder length="0.020" radius="0.008"/>
+        </geometry>
+        <origin xyz="0.012 0 0" rpy="0 ${M_PI/2} 0"/>
+        <material name="black">
+          <color rgba="0 0 0 1"/>
+        </material>
+      </visual>
+    </link>
+
+    <link name="${name}_right_optical_frame">
+    </link>
+  <!--
+
+    <link name="base_laser">
+      <visual>
+        <geometry>
+          <cylinder length="0.02" radius="0.04"/>
+        </geometry>
+      </visual>
+    </link>
+
+    <link name="camera_link">
+      <visual>
+        <geometry>
+          <box size="0.06 .28 .03"/>
+        </geometry>
+        <origin rpy="0 0.05 0" xyz="-0.03 0 0"/>
+      </visual>
+    </link>
+
+    <link name="top_plate">
+      <visual>
+        <geometry>
+          <box size="0.326 0.206 .003"/>
+        </geometry>
+        <origin xyz="0 0 -0.0015"/>
+        <material name="polycarb">
+          <color rgba="1 1 1 0.4"/>
+        </material>
+      </visual>
+    </link>
+
+    <joint name="base_link_to_camera_link" type="fixed">
+      <parent link="base_link"/>
+      <child link="camera_link"/>
+      <origin rpy="0 -0.05 0" xyz="-0.112 0.0 0.230"/>
+    </joint>
+
+    <joint name="base_link_to_top_plate" type="fixed">
+      <parent link="base_link"/>
+      <child link="top_plate"/>
+      <origin xyz="0 0.0 0.147"/>
+    </joint> -->
+
+    <joint name="${name}_to_${name}_camera" type="fixed">
+      <parent link="${name}"/>
+      <child link="${name}_camera"/>
+      <origin xyz="-0.010 0 0"/>
+    </joint>
+
+    <joint name="${name}_camera_to_${name}_left_frame" type="fixed">
+      <parent link="${name}_camera"/>
+      <child link="${name}_left_frame"/>
+      <origin xyz="0 ${INTEROCULAR/2} 0"/>
+    </joint>
+
+    <joint name="${name}_left_frame_to_${name}_left_optical_frame" type="fixed">
+      <parent link="${name}_left_frame"/>
+      <child link="${name}_left_optical_frame"/>
+      <origin xyz="0 0 0" rpy="${-M_PI/2} 0 ${-M_PI/2}"/>
+    </joint>
+
+    <joint name="${name}_camera_to_${name}_right_frame" type="fixed">
+      <parent link="${name}_camera"/>
+      <child link="${name}_right_frame"/>
+      <origin xyz="0 -${INTEROCULAR/2} 0"/>
+    </joint>
+
+    <joint name="${name}_right_frame_to_${name}_right_optical_frame" type="fixed">
+      <parent link="${name}_right_frame"/>
+      <child link="${name}_right_optical_frame"/>
+      <origin xyz="0 0 0" rpy="${-M_PI/2} 0 ${-M_PI/2}"/>
+    </joint>
+  </xacro:macro>
+</robot>

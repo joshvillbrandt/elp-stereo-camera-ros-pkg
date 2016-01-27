@@ -1,7 +1,12 @@
 <?xml version="1.0"?>
 
 <launch>
-	<!-- start rviz with custom vcg -->
-	<node pkg="rviz" type="rviz" name="rviz" args="-d $(find voxel)/extra/voxel.rviz">
-	</node>
+  <!-- start publishing transforms -->
+  <param name="robot_description" command="$(find xacro)/xacro '$(find voxel)/description/voxel_standalone.urdf.xacro'" />
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+
+  <!-- start rviz with custom vcg -->
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find voxel)/extra/voxel.rviz" required="true">
+  </node>
 </launch>

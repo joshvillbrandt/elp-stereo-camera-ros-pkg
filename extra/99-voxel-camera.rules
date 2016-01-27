@@ -1,0 +1,2 @@
+# UVC stereo cameras
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="05a3", ATTRS{idProduct}=="9230", MODE="0666"

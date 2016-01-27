@@ -3,4 +3,10 @@
 <launch>
   <!-- start camera -->
   <include file="$(find voxel)/launch/gscam.launch" />
+
+  <!-- start the stereo image rectification processor -->
+  <node respawn="true" pkg="stereo_image_proc" type="stereo_image_proc" name="stereo_image_proc" ns="stereo">
+    <param name="correlation_window_size" value="21" type="int"/>
+    <param name="approximate_sync" value="true" type="bool"/>
+  </node>
 </launch>

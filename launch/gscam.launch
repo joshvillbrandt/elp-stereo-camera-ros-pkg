@@ -3,9 +3,9 @@
 <launch>
   <!-- start the left camera -->
   <node pkg="gscam" type="gscam" name="left" ns="stereo">
-    <param name="camera_name" value="left" />
     <param name="gscam_config" value="v4l2src device=/dev/video0 ! video/x-raw-yuv,framerate=60/1,width=1280,height=720 ! ffmpegcolorspace" />
-    <!-- <param name="camera_info_url" value="package://localcam/calibrations/${NAME}.yaml" /> -->
+    <param name="camera_name" value="voxel_left" />
+    <param name="frame_id" value="voxel_left_optical_frame" />
     <remap from="camera/image_raw" to="left/image_raw" />
     <remap from="set_camera_info" to="left/set_camera_info" />
   </node>
@@ -13,15 +13,9 @@
   <!-- start the right camera -->
   <node pkg="gscam" type="gscam" name="right" ns="stereo">
     <param name="gscam_config" value="v4l2src device=/dev/video1 ! video/x-raw-yuv,framerate=60/1,width=1280,height=720 ! ffmpegcolorspace" />
-    <param name="camera_name" value="right" />
-    <!-- <param name="camera_info_url" value="package://localcam/calibrations/${NAME}.yaml" /> -->
+    <param name="camera_name" value="voxel_right" />
+    <param name="frame_id" value="voxel_right_optical_frame" />
     <remap from="camera/image_raw" to="right/image_raw" />
     <remap from="set_camera_info" to="right/set_camera_info" />
-  </node>
-
-  <!-- start the stereo image rectification processor -->
-  <node respawn="true" pkg="stereo_image_proc" type="stereo_image_proc" name="stereo_image_proc" ns="stereo">
-    <param name="correlation_window_size" value="21" type="int"/>
-    <param name="approximate_sync" value="true" type="bool"/>
   </node>
 </launch>
