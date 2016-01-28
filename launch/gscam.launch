@@ -1,20 +1,27 @@
 <?xml version="1.0"?>
 
 <launch>
+  <arg name="CAMERA_NAME" default="voxel" />
+  <arg name="LEFT_DEVICE" default="/dev/video0" />
+  <arg name="RIGHT_DEVICE" default="/dev/video1" />
+  <arg name="WIDTH" default="1280" />
+  <arg name="HEIGHT" default="720" />
+  <arg name="FRAMERATE" default="60" />
+
   <!-- start the left camera -->
-  <node pkg="gscam" type="gscam" name="left" ns="stereo">
-    <param name="gscam_config" value="v4l2src device=/dev/video0 ! video/x-raw-yuv,framerate=60/1,width=1280,height=720 ! ffmpegcolorspace" />
-    <param name="camera_name" value="voxel_left" />
-    <param name="frame_id" value="voxel_left_optical_frame" />
+  <node pkg="gscam" type="gscam" name="$(arg CAMERA_NAME)_left" ns="stereo">
+    <param name="gscam_config" value="v4l2src device=$(arg LEFT_DEVICE) ! video/x-raw-yuv,framerate=$(arg FRAMERATE)/1,width=$(arg WIDTH),height=$(arg HEIGHT) ! ffmpegcolorspace" />
+    <param name="camera_name" value="$(arg CAMERA_NAME)_left" />
+    <param name="frame_id" value="$(arg CAMERA_NAME)_left_optical_frame" />
     <remap from="camera/image_raw" to="left/image_raw" />
     <remap from="set_camera_info" to="left/set_camera_info" />
   </node>
 
   <!-- start the right camera -->
-  <node pkg="gscam" type="gscam" name="right" ns="stereo">
-    <param name="gscam_config" value="v4l2src device=/dev/video1 ! video/x-raw-yuv,framerate=60/1,width=1280,height=720 ! ffmpegcolorspace" />
-    <param name="camera_name" value="voxel_right" />
-    <param name="frame_id" value="voxel_right_optical_frame" />
+  <node pkg="gscam" type="gscam" name="$(arg CAMERA_NAME)_right" ns="stereo">
+    <param name="gscam_config" value="v4l2src device=$(arg RIGHT_DEVICE) ! video/x-raw-yuv,framerate=$(arg FRAMERATE)/1,width=$(arg WIDTH),height=$(arg HEIGHT) ! ffmpegcolorspace" />
+    <param name="camera_name" value="$(arg CAMERA_NAME)_right" />
+    <param name="frame_id" value="$(arg CAMERA_NAME)_right_optical_frame" />
     <remap from="camera/image_raw" to="right/image_raw" />
     <remap from="set_camera_info" to="right/set_camera_info" />
   </node>

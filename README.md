@@ -1,61 +1,30 @@
 # voxel
 
-A ROS package for the Voxel stereo camera.
+A ROS package for the Blue Robotics [Voxel Stereo Camera](https://www.bluerobotics.com/store/electronics/voxel-stereo-camera/).
 
 ## Setup
 
-TODO: At these moment, this is more a scratch pad for the various drivers that I have been trying. In the future, down-select to just one driver.
+These setup instructions assume that you have `ros-jade-desktop-full` installed (ROS Indigo should be fine too) and a catkin workspace at `~/catkin_ws`. If you don't, follow the [Installing and Configuring Your ROS Environment](http://wiki.ros.org/ROS/Tutorials/InstallingandConfiguringROSEnvironment) tutorial before proceding.
 
-usb_cam
-
-```bash
-sudo apt-get install ros-jade-usb-cam
-```
-
-libuvc_camera
-
-```bash
-clone libuvc
-clone libuvc_ros
-
-# missing a bunch here
-```
-
-uvc_camera:
-
-```bash
-git clone https://github.com/ktossell/camera_umd ~/camera_umd
-ln -s ~/camera_umd/uvc_camera ~/catkin_ws/src/uvc_camera
-rosdep install uvc_camera
-# password and y's
-cd ~/catkin_ws
-catkin_make
-```
-
-gscam:
+The voxel camera modules rely on the deprecated [gscam](http://wiki.ros.org/gscam) ROS package because of difficulty with the current ROS camera drivers. As such, you'll need to install `gscam` in your local catkin workspace first:
 
 ```bash
 git clone https://github.com/ros-drivers/gscam ~/catkin_ws/src/gscam
-rosdep install gscam
-# password and y's
+rosdep -y install gscam
+# enter password
+
 cd ~/catkin_ws
 catkin_make
 ```
 
-this package:
+Then you can install the voxel package:
 
 ```bash
 git clone https://github.com/bluerobotics/voxel.git ~/catkin_ws/src/voxel
 
-# rosdep install voxel
-# password and y's
-
+# setup udev rules
 sudo cp ~/catkin_ws/src/voxel/extra/99-voxel-camera.rules /etc/udev/rules.d/
-# to immediately reload the rules without restarting
 sudo udevadm control --reload-rules && sudo service udev restart && sudo udevadm trigger
-
-cd ~/catkin_ws
-catkin_make
 ```
 
 ## Calibration
@@ -94,10 +63,19 @@ roslaunch voxel rviz.launch
 
 ![Rviz Screenshot](extra/rviz-screenshot.jpg)
 
+## Notes
+
+For those curious, I have tried a few other camera drivers and may switch recommended drivers in the future. Here is a list of the other drivers that I have tried and the roadblocks I encountered with each one:
+
+* [usb_cam](http://wiki.ros.org/usb_cam): getting "overread" errors; image looks bonkers because of it
+* [libuvc_camera](http://wiki.ros.org/libuvc_camera): works for one camera, but the process for the second camera always hangs on init ([github issue](https://github.com/ktossell/libuvc_ros/issues/28))
+* [uvc_camera](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=2&cad=rja&uact=8&ved=0ahUKEwiOl5uem8vKAhVH1mMKHfs_BjIQFggjMAE&url=http%3A%2F%2Fwiki.ros.org%2Fuvc_camera&usg=AFQjCNEV09wbqsSJRTqIQomJM_EVosr-8g&sig2=mOZgwnFkUEa3V5Yt7_Po6w): image is only black and white and framerate is never more than 5 Hz (this driver is also deprecated)
+
 ## Change History
 
 This project uses [semantic versioning](http://semver.org/).
 
-## v0.1.0 - 2016/02/tbd
+## v0.1.0 - 2016/01/27
 
 * Initial release.
+* Stereo camera working with `gscam` and two [ELP-USBFHD01M](http://www.amazon.com/ELP-Driver-Camera-Module-ELP-USBFHD01M-L21/dp/B00KA7WSSU/ref=pd_sim_147_2?ie=UTF8&dpID=41HNP%2BZXJuL&dpSrc=sims&preST=_AC_UL160_SR160%2C160_&refRID=0K7CKWSDSNFEWPV613WY) cameras

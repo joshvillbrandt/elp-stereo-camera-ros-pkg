@@ -20,10 +20,10 @@
     <link name="${name}_camera">
       <visual>
         <geometry>
-          <box size="0.003 0.080 .020"/>
+          <box size="0.003 0.090 .020"/>
         </geometry>
         <material name="gray">
-          <color rgba="0.7 0.7 0.7 1"/>
+          <color rgba="0.1 0.1 0.1 1"/>
         </material>
       </visual>
     </link>
@@ -31,9 +31,9 @@
     <link name="${name}_left_frame">
       <visual>
         <geometry>
-          <cylinder length="0.020" radius="0.008"/>
+          <cylinder length="0.016" radius="0.008"/>
         </geometry>
-        <origin xyz="0.012 0 0" rpy="0 ${M_PI/2} 0"/>
+        <origin xyz="-0.008 0 0" rpy="0 ${M_PI/2} 0"/>
         <material name="black">
           <color rgba="0 0 0 1"/>
         </material>
@@ -46,9 +46,9 @@
     <link name="${name}_right_frame">
       <visual>
         <geometry>
-          <cylinder length="0.020" radius="0.008"/>
+          <cylinder length="0.016" radius="0.008"/>
         </geometry>
-        <origin xyz="0.012 0 0" rpy="0 ${M_PI/2} 0"/>
+        <origin xyz="-0.008 0 0" rpy="0 ${M_PI/2} 0"/>
         <material name="black">
           <color rgba="0 0 0 1"/>
         </material>
@@ -109,7 +109,7 @@
     <joint name="${name}_camera_to_${name}_left_frame" type="fixed">
       <parent link="${name}_camera"/>
       <child link="${name}_left_frame"/>
-      <origin xyz="0 ${INTEROCULAR/2} 0"/>
+      <origin xyz="0.016 ${INTEROCULAR/2} 0"/>
     </joint>
 
     <joint name="${name}_left_frame_to_${name}_left_optical_frame" type="fixed">
@@ -121,7 +121,7 @@
     <joint name="${name}_camera_to_${name}_right_frame" type="fixed">
       <parent link="${name}_camera"/>
       <child link="${name}_right_frame"/>
-      <origin xyz="0 -${INTEROCULAR/2} 0"/>
+      <origin xyz="0.016 -${INTEROCULAR/2} 0"/>
     </joint>
 
     <joint name="${name}_right_frame_to_${name}_right_optical_frame" type="fixed">
