@@ -31,7 +31,7 @@ sudo udevadm control --reload-rules && sudo service udev restart && sudo udevadm
 
 The calibration process removes distortion from the individual cameras. This process is essential for producing a quality disparity image.
 
-To calibrate the cameras, first print out the [8x6 checkerboard](extra/checkerboard-8x6.pdf) on an 8.5x11 inch piece of paper. Attach the checkerboard printout to something firm like a clipboard. Then run the following:
+To calibrate the cameras, first print out the [8x6 checkerboard](extra/checkerboard-8x6.pdf) on an 8.5x11 inch piece of paper. Attach the checkerboard printout to something firm like a clipboard. (Add a bit of tape to the bottom two corners to keep the page flat.) Then run the following:
 
 ```bash
 roslaunch voxel calibrate.launch
