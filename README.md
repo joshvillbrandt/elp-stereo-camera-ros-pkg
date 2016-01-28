@@ -4,7 +4,12 @@ A ROS package for the Blue Robotics [Voxel Stereo Camera](https://www.blueroboti
 
 ## Setup
 
-These setup instructions assume that you have `ros-jade-desktop-full` installed (ROS Indigo should be fine too) and a catkin workspace at `~/catkin_ws`. If you don't, follow the [Installing and Configuring Your ROS Environment](http://wiki.ros.org/ROS/Tutorials/InstallingandConfiguringROSEnvironment) tutorial before proceding.
+These setup instructions assume that you have Ubuntu 14.04, have ROS Jade or ROS Indigo installed, and have a catkin workspace at `~/catkin_ws`. If you don't, follow the [Installing and Configuring Your ROS Environment](http://wiki.ros.org/ROS/Tutorials/InstallingandConfiguringROSEnvironment) tutorial before proceding. The following specific packages should be installed if they aren't already:
+
+```bash
+sudo apt-get update
+sudo apt-get install ros-jade-ros-base ros-jade-image-common ros-jade-image-transport-plugins ros-jade-image-pipeline
+```
 
 The voxel camera modules rely on the [gscam](http://wiki.ros.org/gscam) ROS package which unfortunately has not been released to `apt` in ages ([github issue](https://github.com/ros-drivers/gscam/issues/17)). As such, you'll need to install `gscam` in your local catkin workspace first:
 
@@ -17,7 +22,7 @@ cd ~/catkin_ws
 catkin_make
 ```
 
-Then you can install the voxel package:
+Now you can install the voxel package:
 
 ```bash
 git clone https://github.com/bluerobotics/voxel-ros-pkg.git ~/catkin_ws/src/voxel

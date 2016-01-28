@@ -15,6 +15,7 @@
     <param name="frame_id" value="$(arg CAMERA_NAME)_left_optical_frame" />
     <remap from="camera/image_raw" to="left/image_raw" />
     <remap from="set_camera_info" to="left/set_camera_info" />
+    <param name="camera_info_url" value="package://voxel/calibration/$(arg CAMERA_NAME)_left.yaml" />
   </node>
 
   <!-- start the right camera -->
@@ -24,5 +25,6 @@
     <param name="frame_id" value="$(arg CAMERA_NAME)_right_optical_frame" />
     <remap from="camera/image_raw" to="right/image_raw" />
     <remap from="set_camera_info" to="right/set_camera_info" />
+    <param name="camera_info_url" value="package://voxel/calibration/$(arg CAMERA_NAME)_right.yaml" />
   </node>
 </launch>

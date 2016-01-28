@@ -57,48 +57,6 @@
 
     <link name="${name}_right_optical_frame">
     </link>
-  <!--
-
-    <link name="base_laser">
-      <visual>
-        <geometry>
-          <cylinder length="0.02" radius="0.04"/>
-        </geometry>
-      </visual>
-    </link>
-
-    <link name="camera_link">
-      <visual>
-        <geometry>
-          <box size="0.06 .28 .03"/>
-        </geometry>
-        <origin rpy="0 0.05 0" xyz="-0.03 0 0"/>
-      </visual>
-    </link>
-
-    <link name="top_plate">
-      <visual>
-        <geometry>
-          <box size="0.326 0.206 .003"/>
-        </geometry>
-        <origin xyz="0 0 -0.0015"/>
-        <material name="polycarb">
-          <color rgba="1 1 1 0.4"/>
-        </material>
-      </visual>
-    </link>
-
-    <joint name="base_link_to_camera_link" type="fixed">
-      <parent link="base_link"/>
-      <child link="camera_link"/>
-      <origin rpy="0 -0.05 0" xyz="-0.112 0.0 0.230"/>
-    </joint>
-
-    <joint name="base_link_to_top_plate" type="fixed">
-      <parent link="base_link"/>
-      <child link="top_plate"/>
-      <origin xyz="0 0.0 0.147"/>
-    </joint> -->
 
     <joint name="${name}_to_${name}_camera" type="fixed">
       <parent link="${name}"/>
