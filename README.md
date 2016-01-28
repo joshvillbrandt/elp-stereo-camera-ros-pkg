@@ -1,4 +1,4 @@
-# voxel
+# voxel-ros-pkg
 
 A ROS package for the Blue Robotics [Voxel Stereo Camera](https://www.bluerobotics.com/store/electronics/voxel-stereo-camera/).
 
@@ -6,7 +6,7 @@ A ROS package for the Blue Robotics [Voxel Stereo Camera](https://www.blueroboti
 
 These setup instructions assume that you have `ros-jade-desktop-full` installed (ROS Indigo should be fine too) and a catkin workspace at `~/catkin_ws`. If you don't, follow the [Installing and Configuring Your ROS Environment](http://wiki.ros.org/ROS/Tutorials/InstallingandConfiguringROSEnvironment) tutorial before proceding.
 
-The voxel camera modules rely on the deprecated [gscam](http://wiki.ros.org/gscam) ROS package because of difficulty with the current ROS camera drivers. As such, you'll need to install `gscam` in your local catkin workspace first:
+The voxel camera modules rely on the [gscam](http://wiki.ros.org/gscam) ROS package which unfortunately has not been released to `apt` in ages ([github issue](https://github.com/ros-drivers/gscam/issues/17)). As such, you'll need to install `gscam` in your local catkin workspace first:
 
 ```bash
 git clone https://github.com/ros-drivers/gscam ~/catkin_ws/src/gscam
@@ -20,7 +20,7 @@ catkin_make
 Then you can install the voxel package:
 
 ```bash
-git clone https://github.com/bluerobotics/voxel.git ~/catkin_ws/src/voxel
+git clone https://github.com/bluerobotics/voxel-ros-pkg.git ~/catkin_ws/src/voxel
 
 # setup udev rules
 sudo cp ~/catkin_ws/src/voxel/extra/99-voxel-camera.rules /etc/udev/rules.d/
