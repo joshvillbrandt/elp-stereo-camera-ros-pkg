@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+
+<launch>
+  <arg name="CAMERA_NAME" default="voxel" />
+  <arg name="LEFT_DEVICE" default="/dev/elp_left" />
+  <arg name="RIGHT_DEVICE" default="/dev/elp_right" />
+  <arg name="LEFT_INFO_URL" default="" />
+  <arg name="RIGHT_INFO_URL" default="" />
+  <arg name="WIDTH" default="1280" />
+  <arg name="HEIGHT" default="720" />
+  <arg name="FRAMERATE" default="30" />
+
+  <!-- start the left camera -->
+  <node respawn="true" pkg="usb_cam" type="usb_cam_node" name="left" ns="$(arg CAMERA_NAME)">
+    <param name="video_device" value="$(arg LEFT_DEVICE)" type="string"/>
+    <param name="pixel_format" value="mjpeg" type="string"/>
+    <param name="image_width" value="$(arg WIDTH)" type="int"/>
+    <param name="image_height" value="$(arg HEIGHT)" type="int"/>
+    <param name="framerate" value="$(arg FRAMERATE)" type="int"/>
+
+    <param name="camera_name" value="$(arg CAMERA_NAME)_left" type="string"/>
+    <param name="camera_frame_id" value="$(arg CAMERA_NAME)_left_optical_frame" type="string"/>
+    <param name="camera_info_url" value="$(arg LEFT_INFO_URL)" />
+  </node>
+
+  <!-- start the right camera -->
+  <node respawn="true" pkg="usb_cam" type="usb_cam_node" name="right" ns="$(arg CAMERA_NAME)">
+    <param name="video_device" value="$(arg RIGHT_DEVICE)" type="string"/>
+    <param name="pixel_format" value="mjpeg" type="string"/>
+    <param name="image_width" value="$(arg WIDTH)" type="int"/>
+    <param name="image_height" value="$(arg HEIGHT)" type="int"/>
+    <param name="framerate" value="$(arg FRAMERATE)" type="int"/>
+
+    <param name="camera_name" value="$(arg CAMERA_NAME)_right" type="string"/>
+    <param name="camera_frame_id" value="$(arg CAMERA_NAME)_right_optical_frame" type="string"/>
+    <param name="camera_info_url" value="$(arg RIGHT_INFO_URL)" />
+  </node>
+</launch>

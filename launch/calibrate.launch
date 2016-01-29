@@ -1,10 +1,14 @@
 <?xml version="1.0"?>
 
 <launch>
+  <arg name="CAMERA_NAME" default="voxel" />
+
   <!-- start camera -->
-  <include file="$(find voxel)/launch/gscam.launch" />
+  <include file="$(find voxel)/launch/usb_cam.launch">
+    <arg name="CAMERA_NAME" value="$(arg CAMERA_NAME)" />
+  </include>
 
   <!-- start calibration -->
-  <node pkg="camera_calibration" type="cameracalibrator.py" name="cameracalibrator" args=" --size 8x6 --square 0.025 --approximate=0.3 left:=/stereo/left/image_raw right:=/stereo/right/image_raw left_camera:=/stereo/left right_camera:=/stereo/right" required="true">
+  <node pkg="camera_calibration" type="cameracalibrator.py" name="cameracalibrator" args=" --size 8x6 --square 0.025 --approximate=0.3 left:=/$(arg CAMERA_NAME)/left/image_raw right:=/$(arg CAMERA_NAME)/right/image_raw left_camera:=/$(arg CAMERA_NAME)/left right_camera:=/$(arg CAMERA_NAME)/right" required="true">
   </node>
 </launch>

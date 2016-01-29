@@ -1,2 +1,3 @@
-# UVC stereo cameras
-SUBSYSTEMS=="usb", ATTRS{idVendor}=="05a3", ATTRS{idProduct}=="9230", MODE="0666"
+# ELP Dual Lens Camera
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="05a3", ATTRS{idProduct}=="9601", SYMLINK+="elp_right"
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="05a3", ATTRS{idProduct}=="9602", SYMLINK+="elp_left"

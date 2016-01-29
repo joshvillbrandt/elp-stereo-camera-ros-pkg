@@ -1,12 +1,18 @@
 <?xml version="1.0"?>
 
 <launch>
+  <arg name="CAMERA_NAME" default="voxel" />
+
   <!-- start camera -->
-  <include file="$(find voxel)/launch/gscam.launch" />
+  <include file="$(find voxel)/launch/usb_cam.launch">
+    <arg name="CAMERA_NAME" value="$(arg CAMERA_NAME)" />
+    <arg name="LEFT_INFO_URL" value="package://voxel/calibration/voxel_left.yaml" />
+    <arg name="RIGHT_INFO_URL" value="package://voxel/calibration/voxel_right.yaml" />
+    <arg name="FRAMERATE" default="15" />
+  </include>
 
   <!-- start the stereo image rectification processor -->
-  <node respawn="true" pkg="stereo_image_proc" type="stereo_image_proc" name="stereo_image_proc" ns="stereo">
-    <param name="correlation_window_size" value="21" type="int"/>
+  <node respawn="true" pkg="stereo_image_proc" type="stereo_image_proc" name="stereo_image_proc" ns="$(arg CAMERA_NAME)">
     <param name="approximate_sync" value="true" type="bool"/>
   </node>
 </launch>

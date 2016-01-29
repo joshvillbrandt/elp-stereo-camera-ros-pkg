@@ -2,8 +2,8 @@
 
 <robot name="voxel_standalone" xmlns:xacro="http://ros.org/wiki/xacro">
   <!-- include the voxel macro -->
-  <xacro:include filename="$(find voxel)/description/voxel.urdf.xacro"/>
+  <xacro:include filename="$(find voxel)/description/voxel_camera.urdf.xacro"/>
 
   <!-- use the voxel macro to create a camera with name "voxel" -->
-  <voxel name="voxel"/>
+  <voxel_camera name="voxel"/>
 </robot>
