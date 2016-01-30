@@ -61,9 +61,16 @@ For more information, check out the [ROS Stereo Calibration Tutorial](http://wik
 
 ## Video Modes
 
-The ELP module used in the voxel camera has these video modes:
+The ELP module used in the voxel camera supports these MJPEG video modes:
 
-
+| Width x Height (pixels) | Framerate (fps) |
+| --- | --- |
+| 1280x720 | 15, 25, 30 |
+| 800x600 | 30 |
+| 640x360 | 60 |
+| 640x480 | 15, 30 |
+| 352x288 | 15, 30 |
+| 320x240 | 15, 30 |
 
 ## Tips and Tricks
 
@@ -78,7 +85,11 @@ Some helpful debugging commands:
 
 This project uses [semantic versioning](http://semver.org/).
 
-## v0.2.0 - TBD
+## v1.0.0 - TBD
+
+* Updates for the new camera enclosure
+
+## v0.2.0 - 2016/01/29
 
 * Added calibration files
 * Added udev rules for consistent left/right camera acquisition
