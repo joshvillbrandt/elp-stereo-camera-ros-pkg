@@ -85,17 +85,17 @@ Some helpful debugging commands:
 
 This project uses [semantic versioning](http://semver.org/).
 
-## v1.0.0 - TBD
+### v1.0.0 - TBD
 
 * Updates for the new camera enclosure
 
-## v0.2.0 - 2016/01/29
+### v0.2.0 - 2016/01/29
 
 * Added calibration files
 * Added udev rules for consistent left/right camera acquisition
-* Now using [ELP-1MP2CAM001](http://www.amazon.com/gp/product/B00VG32EC2?psc=1&redirect=true&ref_=ox_sc_sfl_title_1&smid=A1X8N7RHCK4F35) dual-lens camera
+* Now using `usb_cam` and a [ELP-1MP2CAM001](http://www.amazon.com/gp/product/B00VG32EC2?psc=1&redirect=true&ref_=ox_sc_sfl_title_1&smid=A1X8N7RHCK4F35) dual-lens camera
 
-## v0.1.0 - 2016/01/27
+### v0.1.0 - 2016/01/27
 
 * Initial release
 * Stereo camera working with `gscam` and two [ELP-USBFHD01M](http://www.amazon.com/ELP-Driver-Camera-Module-ELP-USBFHD01M-L21/dp/B00KA7WSSU/ref=pd_sim_147_2?ie=UTF8&dpID=41HNP%2BZXJuL&dpSrc=sims&preST=_AC_UL160_SR160%2C160_&refRID=0K7CKWSDSNFEWPV613WY) cameras
