@@ -17,7 +17,7 @@ Now you can install the voxel package:
 git clone https://github.com/bluerobotics/voxel-ros-pkg.git ~/catkin_ws/src/voxel
 
 # setup udev rules
-sudo cp ~/catkin_ws/src/voxel/extra/99-voxel-camera.rules /etc/udev/rules.d/
+sudo cp ~/catkin_ws/src/voxel/debian/99-voxel-camera.rules /etc/udev/rules.d/
 sudo udevadm control --reload-rules && sudo service udev restart && sudo udevadm trigger
 ```
 
