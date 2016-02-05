@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <launch>
-  <arg name="CAMERA_NAME" default="voxel" />
+  <arg name="CAMERA_NAME" default="elp" />
   <arg name="LEFT_DEVICE" default="/dev/elp_left" />
   <arg name="RIGHT_DEVICE" default="/dev/elp_right" />
   <arg name="LEFT_INFO_URL" default="" />

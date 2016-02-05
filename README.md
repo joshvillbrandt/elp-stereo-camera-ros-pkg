@@ -1,23 +1,23 @@
-# voxel-ros-pkg
+# elp-stereo-camera-ros-pkg
 
-A ROS package for the Blue Robotics [Voxel Stereo Camera](https://www.bluerobotics.com/store/electronics/voxel-stereo-camera/).
+A ROS driver for the ELP Dual Lens stereo camera.
 
 ## Setup
 
-These setup instructions assume that you have Ubuntu 14.04, have ROS Jade or ROS Indigo installed, and have a catkin workspace at `~/catkin_ws`. If you don't, follow the [Installing and Configuring Your ROS Environment](http://wiki.ros.org/ROS/Tutorials/InstallingandConfiguringROSEnvironment) tutorial before proceeding. The following specific packages should be installed if they aren't already:
+These setup instructions assume that you have Ubuntu 14.04, have ROS Indigo or ROS Jade installed, and have a catkin workspace at `~/catkin_ws`. If you don't, follow the [Installing and Configuring Your ROS Environment](http://wiki.ros.org/ROS/Tutorials/InstallingandConfiguringROSEnvironment) tutorial before proceeding. The following specific packages should be installed if they aren't already:
 
 ```bash
 sudo apt-get update
 sudo apt-get install ros-jade-ros-base ros-jade-image-common ros-jade-image-transport-plugins ros-jade-image-pipeline ros-jade-usb-cam
 ```
 
-Now you can install the voxel package:
+Now you can install the elp_stereo_camera package:
 
 ```bash
-git clone https://github.com/bluerobotics/voxel-ros-pkg.git ~/catkin_ws/src/voxel
+git clone https://github.com/joshvillbrandt/elp-stereo-camera-ros-pkg.git  ~/catkin_ws/src/elp_stereo_camera
 
 # setup udev rules
-sudo cp ~/catkin_ws/src/voxel/extra/99-voxel-camera.rules /etc/udev/rules.d/
+sudo cp ~/catkin_ws/src/elp_stereo_camera/extra/99-elp-stereo-camera.rules /etc/udev/rules.d/
 sudo udevadm control --reload-rules && sudo service udev restart && sudo udevadm trigger
 ```
 
@@ -26,27 +26,27 @@ sudo udevadm control --reload-rules && sudo service udev restart && sudo udevadm
 To start the cameras:
 
 ```bash
-roslaunch voxel voxel.launch
+roslaunch elp_stereo_camera elp_stereo_camera.launch
 ```
 
-You now have available topics such as `stereo/left/image_rect_color`, `stereo/left/image_rect_color`, and `/stereo/points`. You'll likely also want to include the `voxel_camera` macro in your urdf file. Look at the [voxel_standalone.urdf.xacro](description/voxel_standalone.urdf.xacro) file for an example of how to do that.
+You now have available topics such as `stereo/left/image_rect_color`, `stereo/left/image_rect_color`, and `/stereo/points`. You'll likely also want to include the `elp_stereo_camera` macro in your urdf file. Look at the [elp_standalone.urdf.xacro](description/elp_standalone.urdf.xacro) file for an example of how to do that.
 
 To quickly view a camera image and the resulting point cloud, try out the included rviz configuration. Click the "Point Cloud" saved camera view in the Views pane on the right. You should now be able to your objects in 3D! Keep in mind that objects closer than 70 cm won't show up in the point cloud with this camera arrangement.
 
 ```bash
-roslaunch voxel rviz.launch
+roslaunch elp_stereo_camera rviz.launch
 ```
 
 ![Rviz Screenshot](extra/rviz-screenshot.jpg)
 
 ## Calibration
 
-The calibration process removes distortion from the individual cameras and surrounding enclosure. This process is essential for producing a quality disparity image. While this package includes generic calibration files for the voxel camera, performing a calibration for each unique voxel camera can improve the quality of the resulting point could.
+The calibration process removes distortion from the individual cameras and surrounding enclosure. This process is essential for producing a quality disparity image. While this package includes generic calibration files for the elp_stereo_camera camera, performing a calibration for each unique elp_stereo_camera camera can improve the quality of the resulting point could.
 
 To calibrate the cameras, first print out the [8x6 checkerboard](extra/checkerboard-8x6.pdf) on an 8.5x11 inch piece of paper. Attach the checkerboard printout to something firm like a clipboard. (Add a bit of tape to the bottom two corners to keep the page flat.) Then run the following:
 
 ```bash
-roslaunch voxel calibrate.launch
+roslaunch elp_stereo_camera calibrate.launch
 ```
 
 The calibration process measures a range of four key attributes: X, Y, size, and skew. Hold the checkerboard up in front of the cameras and vary each of the parameters. (So move the checkerboard left and right, up and down, father and closer, and at different angles.) Make sure that the entire calibration grid stays within view of both cameras. You'll know the calibration process is working when you can see a colored grid in each camera view and when the size of attribute bars are increasing.
@@ -55,13 +55,13 @@ The calibration process measures a range of four key attributes: X, Y, size, and
 
 When the calibration process has gathered enough information about a particular attribute, the corresponding bar will turn green. With practice, the calibration process should take about one minute to complete. Hit the "calibrate" button once all four bars are green. After a few moments, new rectified images should be displayed. Real-world straight edges should now appear straight in the video feed.
 
-Hit the "commit" button to complete the process. This saves the calibration information locally to `~/.ros/camera_info/`. Check out [voxel.launch](launch/voxel.launch) for an example of how to specify the calibration files.
+Hit the "commit" button to complete the process. This saves the calibration information locally to `~/.ros/camera_info/`. Check out [elp_stereo_camera.launch](launch/elp_stereo_camera.launch) for an example of how to specify the calibration files.
 
 For more information, check out the [ROS Stereo Calibration Tutorial](http://wiki.ros.org/camera_calibration/Tutorials/StereoCalibration) as well as the [OpenCV Camera Calibration](http://docs.opencv.org/2.4/modules/calib3d/doc/camera_calibration_and_3d_reconstruction.html) documentation.
 
 ## Video Modes
 
-The ELP module used in the voxel camera supports these MJPEG video modes:
+The ELP module used in the ELP stereo camera supports these MJPEG video modes:
 
 | Width x Height (pixels) | Framerate (fps) |
 | --- | --- |
@@ -87,7 +87,9 @@ This project uses [semantic versioning](http://semver.org/).
 
 ### v1.0.0 - TBD
 
-* Updates for the new camera enclosure
+* Renamed package
+* Added package to ROS apt repository
+* Moved documentation to the ROS wiki
 
 ### v0.2.0 - 2016/01/29
 

@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 
 <launch>
-  <arg name="CAMERA_NAME" default="voxel" />
+  <arg name="CAMERA_NAME" default="elp" />
 
   <!-- start camera -->
-  <include file="$(find voxel)/launch/usb_cam.launch">
+  <include file="$(find elp_stereo_camera)/launch/usb_cam.launch">
     <arg name="CAMERA_NAME" value="$(arg CAMERA_NAME)" />
   </include>
 
