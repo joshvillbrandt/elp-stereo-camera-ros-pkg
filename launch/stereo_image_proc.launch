@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+
+<launch>
+  <arg name="CAMERA_NAME" default="elp" />
+
+  <!-- start the stereo image rectification processor -->
+  <node respawn="true" pkg="stereo_image_proc" type="stereo_image_proc" name="stereo_image_proc" ns="$(arg CAMERA_NAME)">
+    <param name="approximate_sync" value="true" type="bool"/>
+  </node>
+</launch>

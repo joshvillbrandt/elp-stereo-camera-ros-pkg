@@ -4,7 +4,7 @@
   <arg name="CAMERA_NAME" default="elp" />
 
   <!-- start camera -->
-  <include file="$(find elp_stereo_camera)/launch/usb_cam.launch">
+  <include file="$(find elp_stereo_camera)/launch/elp_stereo_camera.launch">
     <arg name="CAMERA_NAME" value="$(arg CAMERA_NAME)" />
   </include>
 
