@@ -1,3 +1,3 @@
 # ELP Dual Lens Camera
-SUBSYSTEMS=="usb", ATTRS{idVendor}=="05a3", ATTRS{idProduct}=="9601", SYMLINK+="elp_right"
-SUBSYSTEMS=="usb", ATTRS{idVendor}=="05a3", ATTRS{idProduct}=="9602", SYMLINK+="elp_left"
+SUBSYSTEMS=="usb", KERNEL=="video*", ATTRS{idVendor}=="05a3", ATTRS{idProduct}=="9601", SYMLINK+="elp_right"
+SUBSYSTEMS=="usb", KERNEL=="video*", ATTRS{idVendor}=="05a3", ATTRS{idProduct}=="9602", SYMLINK+="elp_left"
