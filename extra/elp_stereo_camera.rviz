@@ -216,20 +216,6 @@ Visualization Manager:
         Target Frame: <Fixed Frame>
         Value: Orbit (rviz)
         Yaw: 5.54859
-      - Angle: 0
-        Class: rviz/TopDownOrtho
-        Enable Stereo Rendering:
-          Stereo Eye Separation: 0.06
-          Stereo Focal Distance: 1
-          Swap Stereo Eyes: false
-          Value: false
-        Name: Cloud, Above Camera
-        Near Clip Distance: 0.01
-        Scale: 245.93
-        Target Frame: <Fixed Frame>
-        Value: TopDownOrtho (rviz)
-        X: 0.0139153
-        Y: 1.80529
       - Class: rviz/ThirdPersonFollower
         Distance: 3.65183
         Enable Stereo Rendering:
@@ -247,6 +233,20 @@ Visualization Manager:
         Target Frame: <Fixed Frame>
         Value: ThirdPersonFollower (rviz)
         Yaw: 3.14359
+      - Angle: -1.57
+        Class: rviz/TopDownOrtho
+        Enable Stereo Rendering:
+          Stereo Eye Separation: 0.06
+          Stereo Focal Distance: 1
+          Swap Stereo Eyes: false
+          Value: false
+        Name: Cloud, Above Camera
+        Near Clip Distance: 0.01
+        Scale: 245.93
+        Target Frame: <Fixed Frame>
+        Value: TopDownOrtho (rviz)
+        X: 1.80639
+        Y: -0.00118545
 Window Geometry:
   Displays:
     collapsed: false
