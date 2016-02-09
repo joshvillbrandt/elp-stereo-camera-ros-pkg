@@ -10,20 +10,9 @@
     <link name="${name}">
       <visual>
         <geometry>
-          <cylinder length="0.150" radius="0.029"/>
-        </geometry>
-        <origin rpy="${M_PI/2} 0 0"/>
-        <material name="polycarb">
-          <color rgba="1 1 1 0.3"/>
-        </material>
-      </visual>
-    </link>
-
-    <link name="${name}_pcb">
-      <visual>
-        <geometry>
           <box size="0.002 0.070 .016"/>
         </geometry>
+        <origin xyz="0.001 0 0"/>
         <material name="gray">
           <color rgba="0.1 0.1 0.1 1"/>
         </material>
@@ -60,14 +49,8 @@
     <link name="${name}_right_optical_frame">
     </link>
 
-    <joint name="${name}_to_${name}_pcb" type="fixed">
+    <joint name="${name}_to_${name}_left_frame" type="fixed">
       <parent link="${name}"/>
-      <child link="${name}_pcb"/>
-      <origin xyz="-0.010 0 0"/>
-    </joint>
-
-    <joint name="${name}_pcb_to_${name}_left_frame" type="fixed">
-      <parent link="${name}_pcb"/>
       <child link="${name}_left_frame"/>
       <origin xyz="${BOARD_THICKNESS/2 + LENS_LENGTH} ${INTEROCULAR/2} 0"/>
     </joint>
@@ -78,8 +61,8 @@
       <origin xyz="0 0 0" rpy="${-M_PI/2} 0 ${-M_PI/2}"/>
     </joint>
 
-    <joint name="${name}_pcb_to_${name}_right_frame" type="fixed">
-      <parent link="${name}_pcb"/>
+    <joint name="${name}_to_${name}_right_frame" type="fixed">
+      <parent link="${name}"/>
       <child link="${name}_right_frame"/>
       <origin xyz="${BOARD_THICKNESS/2 + LENS_LENGTH} ${-INTEROCULAR/2} 0"/>
     </joint>

@@ -5,8 +5,7 @@ Panels:
     Property Tree Widget:
       Expanded:
         - /Global Options1
-        - /RobotModel1/Status1
-        - /TF1
+        - /Image1/Status1
         - /TF1/Frames1
       Splitter Ratio: 0.639535
     Tree Height: 546
@@ -28,7 +27,7 @@ Panels:
     Experimental: false
     Name: Time
     SyncMode: 0
-    SyncSource: PointCloud2
+    SyncSource: Image
 Visualization Manager:
   Class: ""
   Displays:
@@ -88,7 +87,7 @@ Visualization Manager:
       Name: Image
       Normalize Range: true
       Queue Size: 2
-      Transport Hint: raw
+      Transport Hint: compressed
       Value: true
     - Alpha: 1
       Class: rviz/RobotModel
@@ -114,11 +113,6 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        elp_pcb:
-          Alpha: 1
-          Show Axes: false
-          Show Trail: false
-          Value: true
         elp_right_frame:
           Alpha: 1
           Show Axes: false
@@ -138,14 +132,12 @@ Visualization Manager:
       Enabled: true
       Frame Timeout: 15
       Frames:
-        All Enabled: true
+        All Enabled: false
         elp:
           Value: true
         elp_left_frame:
           Value: true
         elp_left_optical_frame:
-          Value: true
-        elp_pcb:
           Value: true
         elp_right_frame:
           Value: true
@@ -158,13 +150,12 @@ Visualization Manager:
       Show Names: true
       Tree:
         elp:
-          elp_pcb:
-            elp_left_frame:
-              elp_left_optical_frame:
-                {}
-            elp_right_frame:
-              elp_right_optical_frame:
-                {}
+          elp_left_frame:
+            elp_left_optical_frame:
+              {}
+          elp_right_frame:
+            elp_right_optical_frame:
+              {}
       Update Interval: 0
       Value: true
   Enabled: true
@@ -190,23 +181,23 @@ Visualization Manager:
   Value: true
   Views:
     Current:
-      Class: rviz/Orbit
-      Distance: 4.16164
+      Class: rviz/ThirdPersonFollower
+      Distance: 3.65183
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.06
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 1.34414
-        Y: -0.129134
-        Z: 0.543259
+        X: 0.934373
+        Y: 0.000158046
+        Z: 1.19209e-07
       Name: Current View
       Near Clip Distance: 0.01
-      Pitch: 0.280203
+      Pitch: 0.235398
       Target Frame: <Fixed Frame>
-      Value: Orbit (rviz)
-      Yaw: 3.12359
+      Value: ThirdPersonFollower (rviz)
+      Yaw: 3.14359
     Saved:
       - Class: rviz/Orbit
         Distance: 0.821458
@@ -225,23 +216,37 @@ Visualization Manager:
         Target Frame: <Fixed Frame>
         Value: Orbit (rviz)
         Yaw: 5.54859
-      - Class: rviz/Orbit
-        Distance: 4.16164
+      - Angle: 0
+        Class: rviz/TopDownOrtho
+        Enable Stereo Rendering:
+          Stereo Eye Separation: 0.06
+          Stereo Focal Distance: 1
+          Swap Stereo Eyes: false
+          Value: false
+        Name: Cloud, Above Camera
+        Near Clip Distance: 0.01
+        Scale: 245.93
+        Target Frame: <Fixed Frame>
+        Value: TopDownOrtho (rviz)
+        X: 0.0139153
+        Y: 1.80529
+      - Class: rviz/ThirdPersonFollower
+        Distance: 3.65183
         Enable Stereo Rendering:
           Stereo Eye Separation: 0.06
           Stereo Focal Distance: 1
           Swap Stereo Eyes: false
           Value: false
         Focal Point:
-          X: 1.34414
-          Y: -0.129134
-          Z: 0.543259
-        Name: Point Cloud
+          X: 0.934373
+          Y: 0.000158046
+          Z: 1.19209e-07
+        Name: Cloud, Behind Camera
         Near Clip Distance: 0.01
-        Pitch: 0.280203
+        Pitch: 0.235398
         Target Frame: <Fixed Frame>
-        Value: Orbit (rviz)
-        Yaw: 3.12359
+        Value: ThirdPersonFollower (rviz)
+        Yaw: 3.14359
 Window Geometry:
   Displays:
     collapsed: false
